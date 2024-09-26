@@ -1,1 +1,27 @@
-<p>register works!</p>
+<div class="lg:w-3/12 mt-2 p-10 shadow-lg mx-auto ">
+    <h3 class="text-3xl text-center font-semibold py-5">Register</h3>
+    <form [formGroup]="registerForm" class="flex flex-col">
+    <div class="flex flex-col mt-2 mb-1">
+        <input type="text" formControlName="UserName" class="p-2 border border-gray-300 rounded" placeholder="UserName">
+        <span class="text-red-500" *ngIf="registerForm.hasError('required','UserName') && registerForm.controls['UserName'].dirty">*UserName is required</span>
+    </div>
+    <div class="flex flex-col mt-2 mb-1">
+        <input type="text" formControlName ="FullName" class="p-2 border border-gray-300 rounded" placeholder="FullName">
+        <span class="text-red-500" *ngIf="registerForm.hasError('required','FullName') && registerForm.controls['FullName'].dirty">*FullName is required</span>
+    </div>
+    <div class="flex flex-col mt-2 mb-1">
+        <input type="email" formControlName ="email" class="p-2 border border-gray-300 rounded" placeholder="example@mail.com">
+        <span class="text-red-500" *ngIf="registerForm.hasError('required','email') && registerForm.controls['email'].dirty">*Email is required</span>
+        <span class="text-red-500" *ngIf="registerForm.hasError('email','email') ">*Email is Invalid</span>
+    </div>
+    <div class="flex flex-col mt-2 mb-1">
+        <input type="password" formControlName ="Password" class="p-2 border border-gray-300 rounded" placeholder="password">
+        <span class="text-red-500" *ngIf="registerForm.hasError('required','Password') && registerForm.controls['Password'].dirty">*password required</span>
+    </div>
+    
+    <button [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid" class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="rigestrer()">Submit</button>
+</form>
+<div class="justify-center">
+    <span>Alredy have Account?</span><a class="text-indigo-600 ml-2 cursor-pointer">Login Here</a>
+</div>
+</div>
