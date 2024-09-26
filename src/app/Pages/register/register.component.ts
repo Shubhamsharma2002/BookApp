@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,14 +13,16 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class RegisterComponent implements OnInit {
      fb = inject(FormBuilder)
+     authService = inject(AuthService)
+     router = inject(Router)
      registerForm !: FormGroup
 
      ngOnInit():void{
       this.registerForm = this.fb.group({
-        UserName:['',Validators.required],
-        FullName :['',Validators.required],
+        username:['',Validators.required],
+        fullname :['',Validators.required],
         email:['', Validators.compose([Validators.required,Validators.email])],
-        Password:['', Validators.required],
+        password:['', Validators.required],
   
 
       },
@@ -28,7 +32,16 @@ export class RegisterComponent implements OnInit {
 
 
      rigestrer(){
-       console.log(this.registerForm.value);
+       this.authService.registerService(this.registerForm.value).subscribe({
+        next:(res) =>{
+          alert("user cretaed")
+          this.registerForm.reset();
+          this.router.navigate(['login'])
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+       })
      }
      
 }
