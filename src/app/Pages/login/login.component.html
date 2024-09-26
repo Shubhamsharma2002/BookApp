@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="lg:w-3/12 mt-2 p-10 shadow-lg mx-auto ">
+    <h3 class="text-3xl text-center font-semibold py-5 text-violet-600">Login </h3>
+    <form [formGroup]="loginForm" class="flex flex-col">
+   
+    <div class="flex flex-col mt-2 mb-1">
+        <input type="email" formControlName ="email" class="p-2 border border-gray-300 rounded" placeholder="example@mail.com">
+        <span class="text-red-500" *ngIf="loginForm.hasError('required','email') && loginForm.controls['email'].dirty">*Email is required</span>
+        <span class="text-red-500" *ngIf="loginForm.hasError('email','email') ">*Email is Invalid</span>
+    </div>
+    <div class="flex flex-col mt-2 mb-1">
+        <input type="password" formControlName ="password" class="p-2 border border-gray-300 rounded" placeholder="password">
+        <span class="text-red-500" *ngIf="loginForm.hasError('required','password') && loginForm.controls['password'].dirty">*password required</span>
+    </div>
+    
+    <button [disabled]="loginForm.invalid" [class.disabled]="loginForm.invalid" class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="login()">Submit</button>
+</form>
+<div class="justify-center">
+    <span>Don't have Account?</span><a routerLink="/register" class="text-indigo-600 ml-2 cursor-pointer">Register Here</a>
+</div>
+</div>
