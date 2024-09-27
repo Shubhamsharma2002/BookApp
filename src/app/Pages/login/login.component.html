@@ -1,4 +1,4 @@
-<div class="lg:w-3/12 mt-2 p-10 shadow-lg mx-auto ">
+<div class="lg:w-4/12 mt-2 p-10 shadow-lg mx-auto ">
     <h3 class="text-3xl text-center font-semibold py-5 text-violet-600">Login </h3>
     <form [formGroup]="loginForm" class="flex flex-col">
    
@@ -14,7 +14,8 @@
     
     <button [disabled]="loginForm.invalid" [class.disabled]="loginForm.invalid" class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="login()">Submit</button>
 </form>
-<div class="justify-center">
-    <span>Don't have Account?</span><a routerLink="/register" class="text-indigo-600 ml-2 cursor-pointer">Register Here</a>
+<div class="flex mt-3  justify-between">
+    <a routerLink="/forget-password" class="text-indigo-600 ml-2 cursor-pointer">Forget Password</a>
+    <a routerLink="/register" class="text-indigo-600 ml-2 cursor-pointer">Create Account</a>
 </div>
 </div>

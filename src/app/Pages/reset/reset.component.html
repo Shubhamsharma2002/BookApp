@@ -1,1 +1,17 @@
-<p>reset works!</p>
+<div class="lg:w-4/12 mt-2 p-10 shadow-lg mx-auto ">
+    <h3 class="text-3xl text-center font-semibold py-5 text-violet-600">Reset Password </h3>
+    <form [formGroup]="resetForm" class="flex flex-col">
+   
+    
+    <div class="flex flex-col mt-2 mb-1">
+        <input type="password" formControlName ="password" class="p-2 border border-gray-300 rounded" placeholder="password">
+        <span class="text-red-500" *ngIf="resetForm.hasError('required','password') && resetForm.controls['password'].dirty">*password required</span>
+    </div>
+    <div class="flex flex-col mt-2 mb-1">
+        <input type="password" formControlName ="confirmpassword" class="p-2 border border-gray-300 rounded" placeholder="confirmpassword">
+        <span class="text-red-500" *ngIf="resetForm.hasError('required','confirmpassword') && resetForm.controls['confirmpassword'].dirty">*confirmpassword required</span>
+    </div>
+    
+    <button [disabled]="resetForm.invalid" [class.disabled]="resetForm.invalid" class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="reset()">Submit</button>
+</form>
+</div>
